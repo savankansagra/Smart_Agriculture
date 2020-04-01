@@ -1,10 +1,12 @@
 import joblib
 import pandas as pd
 import numpy as np
-def RFModel(data):	
-    df = pd.DataFrame(data,index = [0])
+
+
+def RFModel(data):
+    df = pd.DataFrame(data, index=[0])
     df_coded = pd.get_dummies(df)
-    model_columns = joblib.load('/root/Keyur Khant/Project/Dashboard/Model FIle/FinalModel_columns.pkl')
+    model_columns = joblib.load('../Model_File/FinalModel_columns.pkl')
     df_coded1 = df_coded.reindex(columns=model_columns, fill_value=0)
     X = df_coded1.values
     mean = [2.00518381e+03, 2.64384429e+01, 3.52928187e+01, 3.50587999e+01,
@@ -44,11 +46,11 @@ def RFModel(data):
 	       1.07125121e-02, 2.91840488e-03, 2.62030180e-02, 1.62639067e-02,
 	       4.10414340e-02, 4.18434492e-02, 5.38557716e-03]
 
+
     for i in range(len(X[0])):
-    	X[0][i] = (X[0][i] - mean[i]) / (np.sqrt(var[i]))
-	    
-    model = joblib.load('/root/Keyur Khant/Project/Dashboard/Model FIle/FinalRFModel.pkl')  
+        X[0][i] = (X[0][i] - mean[i]) / (np.sqrt(var[i]))
+
+    model = joblib.load('../Model_File/FinalRFModel.pkl')
     y_pred = model.predict(X)
 
     return y_pred[0].round(3)
-
