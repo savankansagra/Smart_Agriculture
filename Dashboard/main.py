@@ -37,5 +37,4 @@ print("I am at vvnanagr")
 
 print("surat")
 
-print("thi is unknown by savan")
 print("unknown..................")
