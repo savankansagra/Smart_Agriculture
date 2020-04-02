@@ -11,19 +11,19 @@ def home():
 def Crop_Prediction():
     if request.method == 'POST':
         data = {'City' : request.form["City"],
-            'Year' : request.form["Year"],
-            'Season' : request.form["Crop"],
+            'Year' : int(request.form["Year"]),
+            'Season' : request.form["Season"],
             'Crop' : request.form["Crop"],
-            'avgTemp' : request.form["Crop"],
-            'Cloud Cover' : request.form["Crop"],
-            'maxTemp' : request.form["Crop"],
-            'Precipitation' : request.form["Crop"],
-            'vapPressure' : request.form["Crop"],
-            'Rainfall' : request.form["Crop"],
-            'Wet Day Freq' : request.form["Crop"],
-            'minTemp' : request.form["Crop"]}
+            'avgTemp' : int(request.form["avgTemp"]),
+            'Cloud Cover' : int(request.form["Cloud Cover"]),
+            'maxTemp' : int(request.form["maxTemp"]),
+            'Precipitation' : int(request.form["Precipitation"]),
+            'vapPressure' : int(request.form["vapPressure"]),
+            'Rainfall' : int(request.form["Rainfall"]),
+            'Wet Day Freq' : int(request.form["Wet Day Freq"]),
+            'minTemp' : int(request.form["minTemp"])}
     pred = cyp.RFModel(data)
-    return render_template('/home.html',pred = pred)
+    return render_template('/home.html',pred = pred,data = data)
 
 if __name__ == "__main__":
     app.run(debug=True)
