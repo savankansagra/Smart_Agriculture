@@ -5,6 +5,7 @@ def RFModel(data):
     df = pd.DataFrame(data,index = [0])
     df_coded = pd.get_dummies(df)
 <<<<<<< HEAD
+<<<<<<< HEAD
     model_columns = joblib.load('Model_FIle/FinalModel_columns.pkl')
 =======
     model_columns = joblib.load('/root/Keyur Khant/Project/AgriProject/Dashboard/Model FIle/FinalModel_columns.pkl')
