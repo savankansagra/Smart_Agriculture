@@ -1,5 +1,50 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+<<<<<<< HEAD
+=======
+  <head>
+    <meta charset="utf-8">
+    <title>Crop Yield Prediction</title>
+  </head>
+  <body>
+    <h1> Predict Your Estimated Crop Yield For Next Season</h1>
+    
+    <form action="/" method="POST">
+  	<label for="City">City</label>
+  	<input type="text" id="City" name="City" ><br><br>
+  	<label for="Year">Year</label>
+  	<input type="number" id="Year" name="Year"><br><br>
+  	<label for="Season">Season</label>
+  	<input type="text" id="Season" name="Season" ><br><br>
+  	<label for="Crop">Crop</label>
+  	<input type="text" id="Crop" name="Crop"><br><br>
+  	<label for="avgTemp">Average Temprature</label>
+  	<input type="number" id="avgTemp" name="avgTemp" ><br><br>
+  	<label for="CloudCover">Cloud Cover</label>
+  	<input type="number" id="Cloud Cover" name="Cloud Cover"><br><br>
+  	<label for="maxTemp">Maximum Temprature</label>
+  	<input type="number" id="maxTemp" name="maxTemp" ><br><br>
+  	<label for="Precipitation">Precipitation</label>
+  	<input type="number" id="Precipitation" name="Precipitation"><br><br>
+  	<label for="vapPressure">Vapoure Pressure</label>
+  	<input type="number" id="vapPressure" name="vapPressure" ><br><br>
+  	<label for="Rainfall">Rainfall</label>
+  	<input type="number" id="Rainfall" name="Rainfall"><br><br>
+  	<label for="Wet Day Freq">Wet Day Freq</label>
+  	<input type="number" id="Wet Day Freq" name="Wet Day Freq"><br><br>
+  	<label for="minTemp">Minimum Temprature</label>
+  	<input type="number" id="minTemp" name="minTemp"><br><br>
+  	<input type="submit" value="Submit">
+    </form> 
+    {% if data %}
+        <h2>data : {{ data }} </h2>
+    {% endif %}
+    {% if pred %}
+        <h2>Predicted Yield is : {{ pred }} Tone/Hectre</h2>
+    {% endif %}
+  </body>
+</html>
+>>>>>>> 12df12278f135cd929c735bbcf88863806690d16
 
 <head>
   <meta charset="utf-8">
