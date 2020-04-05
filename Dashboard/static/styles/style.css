@@ -1,0 +1,87 @@
+.weathers{
+	width: auto;
+right: 0px;
+padding-left: 45%;
+margin-left: -13%;
+margin-top: -37%;
+}
+
+.formdiv{
+	width: 350px;
+	margin-left: 35px;
+	border-style: solid;
+	border-width: medium;
+	border-radius: 7px;
+	border-color: #badfff;
+}
+
+.forminside{
+	padding-left: 22px;
+}
+
+.card{
+  height: 100px;
+  margin-bottom: 50px;
+  width: 350px;
+  position: relative;
+  border-radius: 20px;
+  padding: 10px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  box-shadow: 0px 7px 30px 2px rgba(0,0,0,0.18);
+  ul>li{
+    img{
+      width: 30px;
+    }
+    font-size: 25px;
+    color: white;
+  }
+  .leftbottom{
+    color:white;
+    position: absolute;
+    left: 10px;
+    bottom: 0px;
+  }
+  .date{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    text-align: right;
+    color: white;
+  }
+  .rightbottom{
+    position: absolute;
+    right: 10px;
+    bottom: 0px;
+    color: white;
+  }
+}
+
+.list-inline{
+  margin-bottom: 0 !important;
+  font-size: 18.5px; 
+}
+
+h2{
+  margin: 0 !important;
+}
+
+
+
+.button {
+  width:800px;
+  height: 55px; 
+  margin-left: 22px;
+  font-size: 25px;
+  font-weight: bold;
+  background-color: white; 
+  color: #4CAF50; 
+  border: 2px solid #4CAF50;
+  transition-duration: 0.4s;
+  border-radius: 7px;
+}
+
+.button:hover {
+  background-color: #4CAF50;
+  color: white;
+}
