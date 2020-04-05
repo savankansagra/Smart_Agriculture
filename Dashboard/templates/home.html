@@ -1,45 +1,117 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
+    <link rel="stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/style.css') }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <meta charset="utf-8">
-    <title>Crop Yield Prediction</title>
+    <title>Pro Agri</title>
   </head>
   <body>
-    <h1> Predict Your Estimated Crop Yield For Next Season</h1>
-    
-    <form action="/" method="POST">
-  	<label for="City">City</label>
-  	<input type="text" id="City" name="City" ><br><br>
-  	<label for="Year">Year</label>
-  	<input type="number" id="Year" name="Year"><br><br>
-  	<label for="Season">Season</label>
-  	<input type="text" id="Season" name="Season" ><br><br>
-  	<label for="Crop">Crop</label>
-  	<input type="text" id="Crop" name="Crop"><br><br>
-  	<label for="avgTemp">Average Temprature</label>
-  	<input type="number" id="avgTemp" name="avgTemp" ><br><br>
-  	<label for="CloudCover">Cloud Cover</label>
-  	<input type="number" id="Cloud Cover" name="Cloud Cover"><br><br>
-  	<label for="maxTemp">Maximum Temprature</label>
-  	<input type="number" id="maxTemp" name="maxTemp" ><br><br>
-  	<label for="Precipitation">Precipitation</label>
-  	<input type="number" id="Precipitation" name="Precipitation"><br><br>
-  	<label for="vapPressure">Vapoure Pressure</label>
-  	<input type="number" id="vapPressure" name="vapPressure" ><br><br>
-  	<label for="Rainfall">Rainfall</label>
-  	<input type="number" id="Rainfall" name="Rainfall"><br><br>
-  	<label for="Wet Day Freq">Wet Day Freq</label>
-  	<input type="number" id="Wet Day Freq" name="Wet Day Freq"><br><br>
-  	<label for="minTemp">Minimum Temprature</label>
-  	<input type="number" id="minTemp" name="minTemp"><br><br>
-  	<input type="submit" value="Submit">
-    </form> 
-    {% if data %}
-        <h2>data : {{ data }} </h2>
-    {% endif %}
-    {% if pred %}
-        <h2>Predicted Yield is : {{ pred }} Tone/Hectre</h2>
-    {% endif %}
+    <center><h1>Welcome to Agriculture Automation</h1> </center>
+    <div class="formdiv">
+    <center><h3>Get Weather Information</h3></center><br>
+    <div class="forminside">
+    <form class="form-group" action="/weather" method="POST" style="width: 300px">
+  	<label for="Name">Enter Name:</label>
+  	<input type="text" id="Name" name="Name" class="form-control" style="width: 100%" placeholder="Enter Name" required><br><br>
+  	<label for="Email">Enter Email:</label>
+  	<input type="email" id="Email" name="Email" class="form-control" style="width: 100%" placeholder="Enter Email" required><br><br>
+  	<label for="City">Select City:</label>
+    <select id="City" name="City" class="form-control" style="width: 100%" required>
+      <option value="Ahmedabad">Ahmedabad</option>
+      <option value="Amreli">Amreli</option>
+      <option value="Anand">Anand</option>
+      <option value="Banas Kantha">Banas Kantha</option>
+      <option value="Bharuch">Bharuch</option>
+      <option value="Bhavnagar">Bhavnagar</option>
+      <option value="Dahod">Dahod</option>
+      <option value="Dangs">Dangs</option>
+      <option value="Gandhinagar">Gandhinagar</option>
+      <option value="Jamnagar">Jamnagar</option>
+      <option value="Junagadh">Junagadh</option>
+      <option value="Kutch">Kutch</option>
+      <option value="Kheda">Kheda</option>
+      <option value="Mahesana">Mahesana</option>
+      <option value="Narmada">Narmada</option>
+      <option value="Navsari">Navsari</option>
+      <option value="Panchmahal">Panchmahal</option>
+      <option value="Patan">Patan</option>
+      <option value="Porbandar">Porbandar</option>
+      <option value="Rajkot">Rajkot</option>
+      <option value="Sabarkantha">Sabarkantha</option>
+      <option value="Surat">Surat</option>
+      <option value="Surendranagar">Surendranagar</option>
+      <option value="Tapi">Tapi</option>
+      <option value="Vadodara">Vadodara</option>
+      <option value="Valsad">Valsad</option>
+    </select><br><br>
+  	<label for="Area">Enter Area:</label>
+  	<input type="text" id="Area" name="Area" class="form-control" style="width: 100%" placeholder="Area in Bigha" required><br><br>
+  	<center><button type="submit" class="btn btn-default" style="width: 100px">Submit</button></center>
+    </form>
+  </div>
+    </div>
+  {% if lst %}
+  <div class="weathers">
+      <div class="col-md-6" style="width: 50%"> 
+        <div class="card" style="background-color: #a6f1b3">
+          <h2>{{lst[0]}}</h2>
+          <ul class="list-inline">
+            <li style="font-size: 15px">{{lst[3]}} Vigha</li><br>
+            <li style="font-size: 15px">{{lst[2]}}</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-6" style="width: 45%">
+        <div class="card" style="background-color: #f1b1a6">
+          <h2>{{lst[1]}}</h2><br>
+          <ul class="list-inline">
+            <li>Latitude: {{dict["lat"]}}</li>
+            <li style="padding-left: 11%">Longitude: {{dict["lon"]}}</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-6" style="width: 50%">
+        <div class="card" style="background-color: #badfff">
+          <h2>Temperature</h2><br>
+          <ul class="list-inline">
+            <li>{{dict["temp"]}}°C</li>
+            <li style="padding-left: 5%">{{dict["wdesc"]}}</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-6" style="width: 45%">
+        <div class="card" style="background-color: #d6a0f5">
+          <h2>Humidity</h2><br>
+          <ul class="list-inline">
+            <li>{{dict["hum"]}}%</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-6" style="width: 50%">
+        <div class="card" style="background-color: #f4a0f5">
+          <h2>Pressure</h2><br>
+          <ul class="list-inline">
+            <li>{{dict["pres"]}} hPa</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-6" style="width: 45%">
+        <div class="card" style="background-color: #ffd07c">
+          <h2>Wind Speed</h2><br>
+          <ul class="list-inline">
+            <li>{{dict["wspeed"]}} km/h</li>
+          </ul>
+        </div>
+      </div>
+      <form class="redirect" action="/p_redirect" method="POST">
+        <input type="submit" class="button" name="PredictYield" value="Predict Crop Yield">
+      </form>
+    </div>
+  {% endif %}
   </body>
 </html>
 
