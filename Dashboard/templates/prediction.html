@@ -1,45 +1,225 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
+    <link rel="stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/style.css') }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <meta charset="utf-8">
-    <title>Crop Yield Prediction</title>
+    <title>Pro Agriculture</title>
   </head>
   <body>
-    <h1> Predict Your Estimated Crop Yield For Next Season</h1>
-    
-    <form action="/prediction" method="POST">
-  	<label for="City">City</label>
-  	<input type="text" id="City" name="City" ><br><br>
-  	<label for="Year">Year</label>
-  	<input type="number" id="Year" name="Year"><br><br>
-  	<label for="Season">Season</label>
-  	<input type="text" id="Season" name="Season" ><br><br>
-  	<label for="Crop">Crop</label>
-  	<input type="text" id="Crop" name="Crop"><br><br>
-  	<label for="avgTemp">Average Temprature</label>
-  	<input type="number" id="avgTemp" name="avgTemp" ><br><br>
-  	<label for="CloudCover">Cloud Cover</label>
-  	<input type="number" id="Cloud Cover" name="Cloud Cover"><br><br>
-  	<label for="maxTemp">Maximum Temprature</label>
-  	<input type="number" id="maxTemp" name="maxTemp" ><br><br>
-  	<label for="Precipitation">Precipitation</label>
-  	<input type="number" id="Precipitation" name="Precipitation"><br><br>
-  	<label for="vapPressure">Vapoure Pressure</label>
-  	<input type="number" id="vapPressure" name="vapPressure" ><br><br>
-  	<label for="Rainfall">Rainfall</label>
-  	<input type="number" id="Rainfall" name="Rainfall"><br><br>
-  	<label for="Wet Day Freq">Wet Day Freq</label>
-  	<input type="number" id="Wet Day Freq" name="Wet Day Freq"><br><br>
-  	<label for="minTemp">Minimum Temprature</label>
-  	<input type="number" id="minTemp" name="minTemp"><br><br>
-  	<input type="submit" value="Submit">
-    </form> 
-    {% if data %}
-        <h2>data : {{ data }} </h2>
-    {% endif %}
-    {% if pred %}
-        <h2>Predicted Yield is : {{ pred }} Tone/Hectre</h2>
-    {% endif %}
-  </body>
+    <center><h1>Welcome to Agriculture Crop Yield Prediction</h1> </center>
+  <div class="form-full">  
+    <div class="formdiv">
+    <center><h3>Season-Crop Information</h3></center><br>
+    <div class="forminside">
+    <form class="form-group" action="/prediction" method="POST" style="width: 300px">
+    <label for="Season">Select Season:</label>
+    <select id="Season" name="Season" class="formselect" style="width: 100%" required>
+      <option value="Nothing">----Select Season----</option>
+      <option value="Kharif">Kharif(Jun-Oct)</option>
+      <option value="Rabi">Rabi(Nov-Feb)</option>
+      <option value="Summer">Summer(Mar-May)</option>
+      <option value="Whole Year">Whole Year</option>
+    </select><br><br>
+  <div class="main-container">  
+    <div class="Nothing">
+      <label for="Crop">Select Crop:</label>
+      <select name="Nothing" class="formselect" style="width: 100%">
+        <option value="">----Select Crop----</option>
+      </select>
+    </div>
+    <div class="Kharif">
+      <label for="Crop">Select Crop:</label>
+      <select name="Kharif" class="formselect" style="width: 100%">
+        <option value="">----Select Crop----</option>
+        <option value="Moong(Green Gram)">Moong(Green Gram)</option>
+        <option value="Cotton(lint)">Cotton(lint)</option>
+        <option value="Arhar/Tur">Arhar/Tur</option>
+        <option value="Groundnut">Groundnut</option>
+        <option value="Bajra">Bajra</option>
+        <option value="Sesamum">Sesamum</option>
+        <option value="Jowar">Jowar</option>
+        <option value="Maize">Maize</option>
+        <option value="Urad">Urad</option>
+        <option value="Rice">Rice</option>
+        <option value="Ragi">Ragi</option>
+        <option value="Soyabean">Soyabean</option>
+        <option value="Moth">Moth</option>
+        <option value="Tobacco">Tobacco</option>
+        <option value="Dry chillies">Dry chillies</option>
+        <option value="Castor seed">Castor seed</option>
+        <option value="Small millets">Small millets</option>      
+        <option value="other oilseeds">Other Oilseeds</option>
+        <option value="Other Cereals & Millets">Other Cereals & Millets</option>
+        <option value="Pulses total">Pulses</option>
+        <option value="Other Kharif pulses">Other Kharif pulses</option>
+      </select>
+    </div>
+    <div class="Rabi">
+      <label for="Rabi">Select Crop:</label>
+      <select name="Rabi" class="formselect" style="width: 100%">
+        <option value="">----Select Crop----</option>
+        <option value="Wheat">Wheat</option>
+        <option value="Jowar">Jowar</option>
+        <option value="Maize">Maize</option>
+        <option value="Onion">Onion</option>
+        <option value="Gram">Gram</option>
+        <option value="Tobacco">Tobacco</option>
+        <option value="Rapeseed &Mustard">Rapeseed & Mustard</option>
+        <option value="Small millets">Small millets</option>      
+        <option value="Other Cereals & Millets">Other Cereals & Millets</option>
+        <option value="Other  Rabi pulses">Other Rabi pulses</option>
+      </select>
+    </div>
+    <div class="Summer">
+      <label for="Summer">Select Crop:</label>
+      <select name="Summer" class="formselect" style="width: 100%">
+        <option value="">----Select Crop----</option>
+        <option value="Bajra">Bajra</option>
+        <option value="Moong(Green Gram)">Moong(Green Gram)</option>
+        <option value="Rice">Rice</option>
+        <option value="Groundnut">Groundnut</option>
+        <option value="Sesamum">Sesamum</option>
+        <option value="Maize">Maize</option>
+        <option value="Onion">Onion</option>
+        <option value="Urad">Urad</option>
+      </select>
+    </div>
+    <div class="WholeYear">
+      <label for="Whole Year">Select Crop:</label>
+      <select name="Whole Year" class="formselect" style="width: 100%">
+        <option value="">----Select Crop----</option>
+        <option value="Potato">Potato</option>
+        <option value="Sugarcane">Sugarcane</option>
+        <option value="Dry chillies">Dry chillies</option>
+        <option value="Guar seed">Guar seed</option>
+        <option value="Garlic">Garlic</option>
+        <option value="Banana">Banana</option>
+        <option value="Oilseeds total">Oilseeds</option>
+        <option value="Rice">Rice</option>
+        <option value="Onion">Onion</option>
+        <option value="other oilseeds">Other oilseeds</option>
+        <option value="Castor seed">Castor seed</option>
+        <option value="Maize">Maize</option>
+        <option value="Pulses total">Pulses total</option>
+        <option value="Ragi">Ragi</option>
+      </select>
+    </div>
+  </div><br>
+    <label for="Year">Enter Year</label>
+    <input type="text" id="Year" name="Year" class="" style="width: 100%" placeholder="Enter Year (Ex: 2020)" required><br><br>
+    <center><button type="submit" id="submit1" class="btn btn-default" style="width: 100px">Submit</button></center>
+    </form>
+  </div>
+</div>
+    <button type="submit" class="button-left" value="GitHub Repository" onclick="window.location.href = 'https://github.com/savankansagra/Smart_Agriculture';" target="_blank">Github Repository</button>
+      <form class="redirect12" action="/redirect" method="POST">
+          <input type="submit" class="button-left" name="redirect" value="Back To Home" style="margin-top: 4px">
+      </form>
+</div>
+<div class="weathers-1">
+  {% if pred == Flase %}
+  <div id="hide">  
+  <img src="{{ url_for('static',filename='images/image1.jpeg') }}" width="870" height="250">  
+  <p><h4>Agriculture Automation with Crop Yield Prediction is prediction and automation based system.<br>Using this you can predict any Crop Yield of Gujarat Region.<br>This Project uses following Technologies</h4></p>
+  <ul>
+    <li>
+      Machine Learning
+      <ul>
+        <li>
+          Random Forest Regressor with 92% Accuracy.
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <ul>
+    <li>
+      Internet of Things(IoT)
+      <ul>
+        <li>
+          Agriculture Automation with Sensors
+        </li>
+      </ul>
+    </li>
+  </ul>   
+  <ul>
+    <li>
+      Flask(Python) for Dashboard
+    </li>
+  </ul>
+  <ul>
+    <li>
+      Firebase Cloud
+    </li>
+  </ul>
+  </div>
+  {% endif %}
+  {% if pred %}
+      <div class="col-md-6" style="width: 50%"> 
+        <div class="card" style="background-color: #a6f1b3">
+          <h2>{{uname}}</h2>
+          <ul class="list-inline">
+            <li style="font-size: 15px">{{uarea}} Vigha</li><br>
+            <li style="font-size: 15px">{{uemail}}</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-6" style="width: 45%">
+        <div class="card" style="background-color: #f1b1a6">
+          <h2>{{ucity}}</h2><br>
+          <ul class="list-inline">
+            <li>Latitude: {{ulat}}</li>
+            <li style="padding-left: 11%">Longitude: {{ulon}}</li>
+          </ul>
+        </div>
+      </div>  
+      <div class="col-md-6" style="width: 50%"> 
+        <div class="card" style="background-color: #badfff">
+          <h2>{{season}} Season</h2>
+          <ul class="list-inline">
+            <li style="font-size: 15px">{{year}}</li><br>
+            <li style="font-size: 20px">{{crop}}</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-6" style="width: 45%">
+        <div class="card" style="background-color: #d6a0f5">
+          <h2>Predicted Yield</h2>
+          <ul class="list-inline">
+            <li style="font-size: 15px">{{pred}} kg / vigha</li><br>
+            <li style="font-size: 20px">{{total}} kg Estimated Yield</li>
+          </ul>
+        </div>
+      </div>
+    <p style="color: red"><i>*&nbsp;Methodology to predict the yield of the crops using different parameters like rainfall, temperature, geographical situation and other<br>&nbsp;&nbsp;atmospheric conditions and parameters.<br>
+      *&nbsp;The influence of climate change and its unpredictability, has caused majority of the agricultural crops to be affected in terms of their<br>&nbsp;&nbsp;production and maintenance.<br>
+      *&nbsp;Forecasting or predicting the crop yield well ahead of its harvest time would assist the strategists<br>
+    *&nbsp;So that above yield prediction may be vary according to weather situation.</i></p><br>
+
+    <form class="redirect" action="/redirect" method="POST">
+      <input type="submit" class="button" name="redirect" value="Download PDF">
+      <input type="submit" class="button" name="redirect" value="Farm Controller">
+    </form>
+</div>
+  {% endif %}
+</body>
+<script type="text/javascript">
+  $(document).ready(function () {
+    $('#Season').bind('change', function () {
+        $('div.main-container').children().hide();
+        var value = $(this).val();
+        if (value == 'Whole Year'){
+          $('div.WholeYear').show();
+        }
+        else if (value) { 
+            $('div.'+value).show();
+        }   
+    }).trigger('change');
+});
+</script>
+
 </html>
 

@@ -4,23 +4,25 @@
     <link rel="stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/style.css') }}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <meta charset="utf-8">
-    <title>Pro Agri</title>
+    <title>Pro Agriculture</title>
   </head>
   <body>
     <center><h1>Welcome to Agriculture Automation</h1> </center>
+   <div class="form-full">
     <div class="formdiv">
     <center><h3>Get Weather Information</h3></center><br>
     <div class="forminside">
     <form class="form-group" action="/weather" method="POST" style="width: 300px">
   	<label for="Name">Enter Name:</label>
-  	<input type="text" id="Name" name="Name" class="form-control" style="width: 100%" placeholder="Enter Name" required><br><br>
+  	<input type="text" id="Name" name="Name" class="" style="width: 100%" placeholder="Enter Name" required><br><br>
   	<label for="Email">Enter Email:</label>
-  	<input type="email" id="Email" name="Email" class="form-control" style="width: 100%" placeholder="Enter Email" required><br><br>
+  	<input type="email" id="Email" name="Email" class="" style="width: 100%" placeholder="Enter Email" required><br><br>
   	<label for="City">Select City:</label>
-    <select id="City" name="City" class="form-control" style="width: 100%" required>
+    <select id="City" name="City" class="formselect" style="width: 100%" required>
+      <option value="">----Select City----</option>	
       <option value="Ahmedabad">Ahmedabad</option>
       <option value="Amreli">Amreli</option>
       <option value="Anand">Anand</option>
@@ -49,13 +51,51 @@
       <option value="Valsad">Valsad</option>
     </select><br><br>
   	<label for="Area">Enter Area:</label>
-  	<input type="text" id="Area" name="Area" class="form-control" style="width: 100%" placeholder="Area in Bigha" required><br><br>
-  	<center><button type="submit" class="btn btn-default" style="width: 100px">Submit</button></center>
+  	<input type="text" id="Area" name="Area" class="" style="width: 100%" placeholder="Area in Vigha (1 Hactre = 6.18 Vigha)" required><br><br>
+  	<center><button type="submit" id="submit1" class="btn btn-default" style="width: 100px">Submit</button></center>
     </form>
   </div>
     </div>
-  {% if lst %}
+    	<button type="submit" class="button-left" value="GitHub Repository" onclick="window.location.href = 'https://github.com/savankansagra/Smart_Agriculture';">Github Repository</button>
+  </div>
   <div class="weathers">
+  {% if lst == Flase %}
+  <div id="hide">  
+  <img src="{{ url_for('static',filename='images/image1.jpeg') }}" width="870" height="250">  
+  <p><h4>Agriculture Automation with Crop Yield Prediction is prediction and automation based system.<br>Using this you can predict any Crop Yield of Gujarat Region.<br>This Project uses following Technologies</h4></p>
+  <ul>
+    <li>
+      Machine Learning
+      <ul>
+        <li>
+          Random Forest Regressor with 92% Accuracy.
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <ul>
+    <li>
+      Internet of Things(IoT)
+      <ul>
+        <li>
+          Agriculture Automation with Sensors
+        </li>
+      </ul>
+    </li>
+  </ul>   
+  <ul>
+    <li>
+      Flask(Python) for Dashboard
+    </li>
+  </ul>
+  <ul>
+    <li>
+      Firebase Cloud
+    </li>
+  </ul>
+  </div>
+  {% endif %}
+  {% if lst %}
       <div class="col-md-6" style="width: 50%"> 
         <div class="card" style="background-color: #a6f1b3">
           <h2>{{lst[0]}}</h2>
@@ -107,8 +147,9 @@
           </ul>
         </div>
       </div>
-      <form class="redirect" action="/p_redirect" method="POST">
-        <input type="submit" class="button" name="PredictYield" value="Predict Crop Yield">
+      <form class="redirect" action="/redirect" method="POST">
+        <input type="submit" class="button" name="redirect" value="Predict Yield">
+        <input type="submit" class="button" name="redirect" value="Farm Controller">
       </form>
     </div>
   {% endif %}
