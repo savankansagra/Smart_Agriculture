@@ -53,4 +53,13 @@ const uiConfig = {
   }
 };
 
-// const ui = new firebaseui.auth.AuthUI(firebase.auth());
+ const ui = new firebaseui.auth.AuthUI(firebase.auth());
+
+
+
+ //Listen to rsvp button clicks
+ startRsvpButton.addEventListener("click",
+  () => {
+    ui.start("#firebaseui-auth-container",uiConfig);
+  }
+);
