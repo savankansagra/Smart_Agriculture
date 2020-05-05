@@ -1,9 +1,132 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
+    <link rel="stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/style.css') }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <meta charset="utf-8">
-    <title>Crop Yield Prediction</title>
+    <title>Pro Agriculture</title>
+    <script type="text/javascript">
+        function preventBack() { window.history.forward(); }
+        setTimeout("preventBack()", 0);
+        window.onunload = function () { null };
+    </script>
   </head>
-<body><h1>Work in Progress...</h1></body>
+<body>
+	<div>
+	<center><h1>
+	<img src="{{ url_for('static',filename='images/image3.png') }}" width="50" height="50">
+	Welcome to Agriculture Farm Controller
+	<form class="redirect" action="/logout" method="POST" style="padding-left: 86%;margin-top: -4%">
+      <input type="submit" class="button" name="logout" value="Logout" style="height: 40px;width: 125px;font-size: 20px">
+    </form>
+    </h1> </center>
+	</div>
+{% if data %}
+<div class="controller" style="margin-top: 3%">
+  <div id="controller-div">  
+      <div class="col-md-6" style="width: 0%"> 
+        <div class="card" style="background-color: #a6f1b3">
+          <h2>{{name}}</h2>
+          <ul class="list-inline">
+            <li style="font-size: 15px">{{mob}}</li><br>
+            <li style="font-size: 15px">{{email}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{area}} Vigha</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-6" style="width: 0%;margin-top: 11%;margin-left: -30px">
+        <div class="card" style="background-color: #f1b1a6">
+          <h2>{{city}}</h2><br>
+          <ul class="list-inline">
+            <li>Latitude: {{lat}}</li>
+            <li style="padding-left: 11%">Longitude: {{lon}}</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-6" style="width: 0%;margin-top: 22%;margin-left: -30px">
+        <div class="card" style="background-color: #d6a0f5;height: 180px;margin-bottom: 0px">
+          <h2>Sensor Reading</h2><br>
+          <ul class="list-inline" style="font-size: 22px;padding-top: 13px">
+            <li>Temperature: {{temp}}°C</li><br>
+            <li>Humidity: {{hum}}%</li><br>
+            <li>Soil Moisture: {{soilm}}</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-6" style="width: 0%;margin-left: 27%"> 
+      	<div class="card" style="background-color: #badfff;width: 925px;">
+          <h2>Current Irrigation Status: <b>{% if status == True %}Running{% endif %}
+          	{% if status == False %}Stopped{% endif %}
+          </b></h2><br>
+          <p style="font-size: 20px">Last Activity: Open on <b>{{laston.strftime("%B %d, %Y")}}</b> at 
+          	<b>{{laston.strftime("%I:%M:%S %p")}}</b></p>
+        </div>
+      </div>
+      {% if status == True %}
+      <div class="col-md-6" style="width: 500px;margin-top: 150px;margin-left: -30px;z-index: 6"> 
+      	<form class="redirect" action="/turnoff" method="POST" style="z-index: 5;position: relative;">
+      		<h2 id = "demo" style="width: 800px"></h2>
+      		<h4>Turn off your Motor immediately</h4>
+      		<input type="submit" class="button" id="clickButton" name="redirect" value="Turn Off" style="width: 150px;margin-left: 0px;margin-top: 10px;height: 40px;font-size: 20px">
+      	</form>
+      	<img src="{{ url_for('static',filename='images/image2.png') }}" width="925" height="250" style="margin-top: -10%;z-index: -1;position: relative;">
+      </div>
+      {% endif %}
+      {% if status == False %}
+      <div class="col-md-6" style="width: 500px;margin-top: 150px;margin-left: -30px"> 
+      	<form class="redirect" action="/turnon" method="POST" style="flex-flow: row wrap;align-items: center;z-index: 6;position: relative;">
+      		<h2>Turn on your Motor</h2>
+      		<table>
+      			<tr>
+      				<td><label for="hour" style="padding-top: 5px">Enter Hours</label></td>
+      				<td><label for="minute" style="padding-top: 5px">Enter Minutes</label></td>
+      			</tr>
+      			<tr>
+      				<td><input type="number" id="hour" name="hour" class="" style="width: 70%;height: 15px" placeholder="Enter Hours" required min="0" max="10"><br></td>
+      				<td><input type="number" id="minute" name="minute" class="" style="width: 70%;height: 15px" placeholder="Enter Minutes" required min="0" max="59"><br></td>
+      			</tr>
+      		</table>
+      		<input type="submit" class="button" name="redirect" value="Turn On" style="width: 142px;margin-left: 0px;margin-top: 10px;height: 40px;font-size: 20px;position: relative;">
+      	</form>
+      	<img src="{{ url_for('static',filename='images/image2.png') }}" width="925" height="250" style="margin-top: -15%;z-index: -1">
+      </div>
+      {% endif %}  
+	</div>
+</div>
+{% endif %}
+</body>
+<script>
+// Set the date we're counting down to
+var countDownDate = new Date('{{ ontill.strftime("%m/%d/%Y %H:%M:%S")}}').getTime();
+
+// Update the count down every 1 second
+var x = setInterval(function() {
+
+  // Get today's date and time
+  var now = new Date().getTime();
+    
+  // Find the distance between now and the count down date
+  var distance = countDownDate - now;
+    
+  // Time calculations for days, hours, minutes and seconds
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+  // Output the result in an element with id="demo"
+  document.getElementById("demo").innerHTML = hours + "h "
+  + minutes + "m " + seconds + "s Remaining for Irrigation";
+    
+  // If the count down is over, write some text 
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("demo").innerHTML = "Completed";
+    var button = document.getElementById('clickButton');
+    button.form.submit();
+  }
+}, 1000);
+</script>
 </html>
 

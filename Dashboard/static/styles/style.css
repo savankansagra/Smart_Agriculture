@@ -33,14 +33,61 @@ margin-top: -36.9%;
   
 }
 
+.formdiv-login{
+  width: 350px;
+  border-style: solid;
+  border-width: medium;
+  border-radius: 7px;
+  border-color: #badfff;
+  margin-left: 457px;
+  margin-top: 70px;
+}
+
 .form-full{
   width: 350px;
   margin-left: 35px;
-  margin-top: 2%;
+  margin-top: 1%;
 }
 
 .forminside{
 	padding-left: 22px;
+}
+
+.login-error{
+  margin-left: 569px;
+  margin-top: 20px;
+  font-size: 15px;
+  color: red;
+
+  -webkit-animation: seconds 1.0s forwards;
+  -webkit-animation-iteration-count: 1;
+  -webkit-animation-delay: 5s;
+  animation: seconds 1.0s forwards;
+  animation-iteration-count: 1;
+  animation-delay: 3s;
+  position: relative;
+}
+
+
+@-webkit-keyframes seconds {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    left: -9999px; 
+    position: absolute;   
+  }
+}
+@keyframes seconds {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    left: -9999px;
+    position: absolute;     
+  }
 }
 
 .card{
@@ -131,3 +178,5 @@ h2{
 .redirect12{
   margin-top: 13px;
 }
+
+

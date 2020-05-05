@@ -1,9 +1,11 @@
 from __future__ import print_function 
 import sys
-from flask import Flask, request, render_template, url_for, redirect, make_response
+from flask import Flask, request, render_template, url_for, redirect, make_response, session
 from Model_Package import CropYieldPrediction as cyp
 from Model_Package import WeatherData as wd
 from Model_Package import VariableAPI as varp
+from Model_Package import Firebase as fb
+from datetime import timedelta,datetime,date,time
 import pdfkit
 
 
@@ -18,14 +20,14 @@ ucrop = ''
 uyear = 0
 upred = 0
 utotal = 0
-
+uid = ''
 
 app = Flask(__name__)
-
+app.secret_key = 'kpkhant007'
 
 @app.route("/")
 def home():
-    return render_template("home.html")
+    return render_template("index.html")
 
 
 @app.route("/weather" , methods = ["POST"])
@@ -93,6 +95,77 @@ def Crop_Prediction():
     uyear = Year
     return render_template('/prediction.html',pred = pred,total=total,ucity = ucity,uemail = uemail,uname = uname,uarea = uarea,ulat = ulat,ulon=ulon,season = Season,year = Year,crop = Crop)
 
+@app.route("/farm" , methods = ["POST"])
+def Farm_Controller():
+	if request.method == 'POST':
+		Email = request.form["Email"]
+		Password = request.form["Password"]
+	auth = fb.getAuth(Email,Password)
+	if(auth[0] == True):
+		global uid
+		uid = auth[1]
+		session['username'] = Email
+		data = fb.getData(auth[1])
+		details = data['Details']
+		soil_data = data['Soil_Parameter']
+		motor = data['Controller']
+		weatherdict = wd.FindWeather(details['City'])
+		ontill = motor['OnTill']+timedelta(hours=5,minutes=30)
+		laston = motor['LastOn']+timedelta(hours=5,minutes=30)
+		current = datetime.now()
+		return render_template("farmcontroller.html",uid = auth[1],data = data,name = details['Name'],city = details['City'], area = details['Land_Area'], email = details['Email'], mob = details['Mobile_No'],soilm = soil_data['Soil_Moisture'], temp = soil_data['Temprature'], hum = soil_data['Humidity'],status = motor['Status'], laston = laston, ontill = ontill,lat = weatherdict["lat"],lon = weatherdict["lon"])
+	else:
+		error = "Email or Password is incorrect"
+		return render_template("farmlogin.html",error = error)
+
+@app.route("/logout" , methods = ["POST"])
+def Logout():
+	if request.method == 'POST':
+		session.clear()
+		response =  render_template("farmlogin.html")
+		response = make_response(response)
+		response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+		return response
+
+@app.route("/turnoff" , methods = ["POST"])
+def Motor_off():
+	if request.method == 'POST':
+		global uid
+		laston = ontill = datetime.now() - timedelta(hours=5,minutes=30)
+		status = False
+		data = {u'LastOn': laston,u'OnTill':ontill, u'Status':status}
+		fb.updateData(uid,data)
+		data = fb.getData(uid)
+		details = data['Details']
+		soil_data = data['Soil_Parameter']
+		motor = data['Controller']
+		weatherdict = wd.FindWeather(details['City'])
+		ontill = motor['OnTill']+timedelta(hours=5,minutes=30)
+		laston = motor['LastOn']+timedelta(hours=5,minutes=30)
+		current = datetime.now()
+		return render_template("farmcontroller.html",uid = uid,data = data,name = details['Name'],city = details['City'], area = details['Land_Area'], email = details['Email'], mob = details['Mobile_No'],soilm = soil_data['Soil_Moisture'], temp = soil_data['Temprature'], hum = soil_data['Humidity'],status = motor['Status'], laston = laston, ontill = ontill,lat = weatherdict["lat"],lon = weatherdict["lon"])
+
+@app.route("/turnon" , methods = ["POST"])
+def Motor_on():
+	if request.method == 'POST':
+		global uid
+		hour = request.form["hour"]
+		minute = request.form["minute"]
+		laston = current = datetime.now() - timedelta(hours=5,minutes=30)
+		ontill = current + timedelta(hours = int(hour), minutes = int(minute))
+		status = True
+		data = {u'LastOn': laston,u'OnTill':ontill, u'Status':status}
+		fb.updateData(uid,data)
+		data = fb.getData(uid)
+		details = data['Details']
+		soil_data = data['Soil_Parameter']
+		motor = data['Controller']
+		weatherdict = wd.FindWeather(details['City'])
+		ontill = motor['OnTill']+timedelta(hours=5,minutes=30)
+		laston = motor['LastOn']+timedelta(hours=5,minutes=30)
+		current = datetime.now()
+		return render_template("farmcontroller.html",uid = uid,data = data,name = details['Name'],city = details['City'], area = details['Land_Area'], email = details['Email'], mob = details['Mobile_No'],soilm = soil_data['Soil_Moisture'], temp = soil_data['Temprature'], hum = soil_data['Humidity'],status = motor['Status'], laston = laston, ontill = ontill,lat = weatherdict["lat"],lon = weatherdict["lon"])
+
 
 @app.route("/redirect", methods = ["POST"])
 def redirect1():
@@ -117,9 +190,11 @@ def redirect1():
     	response.headers['Content-Disposition'] = 'inline, filename = report.pdf'
     	return response
     elif request.form['redirect'] == 'Farm Controller':
-        return render_template("farmcontroller.html")
-    elif request.form['redirect'] == 'Back To Home':
+        return render_template("farmlogin.html")
+    elif request.form['redirect'] == 'Crop Prediction':
         return render_template("home.html")
+    elif request.form['redirect'] == 'Back To Home':
+        return render_template("index.html")
     elif request.form['redirect'] == 'GitHub Repository':
         return redirect(url_for("www.google.com"))
 
