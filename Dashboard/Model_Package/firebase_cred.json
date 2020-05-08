@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "farmerautomode",
+  "private_key_id": "cba1c349a5ddfa4592671e644cebf91d330d27cb",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCOfp5m4b1FYVoU\nTcOs/ZCHLOXjbywH5J0+eg87iVJe3jG3y2IpxDWZn0LUKUimR+C5NLRN/8q4VwNV\nwUmiMJ8k3SRxt/pv+BZJvD4VSQKIUMlGhbFW/AoGLm0eSKyW8D5us3dd5bxnHLD7\nZS0UwvGJaXWg1LO9kZTTvepxXEFI3IJLfos8gbVoUO0rRtOZVeEHq7Z7VEOSPE8+\nlilexUesVUGXXBVCSuP8/zna/1myjQeohR4x1Kwhq1sgdMvpWUppT/A8FURo13x4\nCtGSFRetJukhMWBUgSCHwPh6NMDPqYz3trjnSevtSdQfJrmY4+MNfs2V+S1gD3FB\nQCzAGkBrAgMBAAECggEAPh3SPXUghhMnKnyv1UR/8X1QBbIb1qEBLxAUfdah8rsX\nn1BozV48I2i6wDPy+JGS1Am2o93i6DL+QC7PQ4XAilhgn7Yc1Ryn0qLdyXeXRAc7\nhqOXKB0c3Y71gGMb4Xx/KtDPMz6Hv8dRG3YCje9hTY6MeXzfkb7ZyugaQCqARxs6\nqExxjluiN8/Wq4v+3ph6YQzGyMG9AkcLusMGemNx+g27squVQwIU2w1+fOVoPZ1R\nsKe1RP/pEut1B7CphpqbtSIosiVG53637EtqRl/scdFnp9y5vjZ7JUtnZaxVqvl9\naSq3g9+N5Fbcz92rOrujEIHwFsZY8mpDJKEO3ntiQQKBgQC/hlt9R5VwqWoWhCS2\n6NpPxqhCihKwKCVB/aeLuOTIp+rYsPfwILgOXouY5mOT6SBjKsLR8lZ36u7v7koi\nea/JOH6PZSD4rDvwfTvpSRa9o8oGXFlnVDbMPOSV9LBwdaL34ktq0cKNUgGofvZ6\n3TVSPlUGrDJT1nGWhlXkD8y8iwKBgQC+dtPzQWRx8uHxDD2StM7AGJlb5VoBRfEc\noczU4ykHvrr8towTJosxMBHjjGMF2ycYaGt6SoEP0RSTPYODzHDOn3m8Drej10vP\naMoimD2iXHdenPuWFXZuUQVdfCMogmR82Q7ubn/jsVhzZRjNhzoPRWsYegOkXdUc\nRSaqgiunoQKBgEb1Z4Yl9GcWTXjkIpol8WRnLMXiVAQyC4PEj8PDj/gLxoXcIzAz\nXx3rx3qxuSj+0YIMQLv6NjEduMLqHUtinE9IABPumuWnIln6fCz1aFiAi4QJyRHw\ncJEA6ovoaUpxOxzuGZUM/DDRtk2QJI/mzy+WangbalYHeHQVd1MUy3z7AoGBAJ8R\nguZwQMFiBg1ZGbuCwgFxCfPT0p2pmjs9bmKF7WiIhIY2tznvQOStruMKBlGHvFkI\nLGsP+kYJalOmVkYm4jfOvM6ww/JUBv6MF/VYjHEjJJaiKQQpnKV5iS+QU5Srgd07\nMtsy8iBppuOJFXPhcj36zfy9Onl13Fwl7KsO2ALBAoGAcPg063YgE10ttTjqgU8D\n6ZO6I6zHIkjnjGbQa89JtpkzO48JjV1aY1axmE2qCOvi6NVE9OceDU+KZDfvpyx0\n2tQd5tOWJSoOiPKZQm3qgYB55OTk45QFVt/OKjtG7yxzNasT8JKgAAlrtaT8+grN\nymEMaG/ZYb23IfuI5Jm0iQ0=\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-qw25o@farmerautomode.iam.gserviceaccount.com",
+  "client_id": "114196337179493354729",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-qw25o%40farmerautomode.iam.gserviceaccount.com"
+}
